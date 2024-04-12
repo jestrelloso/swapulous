@@ -2,6 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+
+# Database URL, change if necessary
 SQLALCHEMY_DATABASE_URL = "sqlite:///./testing-db.db"
 
 engine = create_engine(
