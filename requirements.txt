@@ -5,3 +5,5 @@ passlib
 bcrypt
 sqlalchemy
 pytest
+python-multipart
+
