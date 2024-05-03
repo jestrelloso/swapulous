@@ -42,7 +42,7 @@ class DbItems(Base):
     id = Column(String, primary_key=True, index = True, unique=True, default=lambda: str(uuid.uuid4()))
     name = Column(String, unique=True)
     appversion = Column(String)
-    availability = Column(String)
+    availability = Column(Boolean)
     city = Column(String)
     condition = Column(String)
     description = Column(String)
