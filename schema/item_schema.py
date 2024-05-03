@@ -37,7 +37,7 @@ class MoreImage(BaseModel):
 class ItemBase(BaseModel):
     name: str
     appversion: str
-    availability: str
+    availability: bool
     city: str
     condition: conds 
     description: str
@@ -60,7 +60,7 @@ class ItemResponse(BaseModel):
     id: str
     name: str
     appversion: str
-    availability: str
+    availability: bool
     city: str
     condition: conds 
     description: str
@@ -82,7 +82,7 @@ class ItemUpdate(BaseModel):
     reviews: Optional[str]
     name: Optional[str]
     appversion: Optional[str]
-    availability: Optional[str]
+    availability: Optional[bool]
     city: Optional[str]
     condition: Optional[conds] 
     description: Optional[str]
