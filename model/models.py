@@ -32,6 +32,6 @@ class DbItems(Base):
 class ItemsImage(Base):
     __tablename__ = 'images'
     id = Column(String, primary_key=True, index = True, unique=True, default=lambda: str(uuid.uuid4()))
-    image_path = Column(String, nullable=False)
+    image = Column(String, nullable=True)
     item_id = Column(String, ForeignKey("items.id", ondelete="CASCADE"))
     item = relationship("DbItems", back_populates='moreimage')

@@ -17,16 +17,15 @@ async def save_itemimage(image: UploadFile, filename: str):
         return None
 
 
-# Image handler function for coverPhoto field
-async def save_more(moreimages: List[UploadFile], filenames: List[str]):
+# Image handler function for additionalImage field
+async def save_more(moreimages: UploadFile, filename: str):
     try:
-        os.makedirs("files/morephotos", exist_ok=True)
-        for moreimage, filename in zip(moreimages, filenames):
-            image_path = os.path.join("files/morephotos", filename)
-            with open(image_path, "wb") as buffer:
-                content = await moreimage.read()
-                buffer.write(content)
-            return image_path
+        os.makedirs("files\morephotos", exist_ok=True)
+        image_path = os.path.join("files\morephotos", filename)
+        with open(image_path, "wb") as buffer:
+            content = await moreimages.read()
+            buffer.write(content)
+        return image_path
     except Exception as e:
-        print(f"Error saving images: {e}")
+        print(f"Error saving image: {e}")
         return None

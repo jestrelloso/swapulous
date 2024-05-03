@@ -1,4 +1,3 @@
-from sqlalchemy import Column, func, DateTime
 from typing import List, Optional
 from pydantic import BaseModel
 from enum import Enum
@@ -12,7 +11,29 @@ class Category(str, Enum):
     Electronic = "Electronic"
     Media = "Media"
 
+class ImageBase(BaseModel):
+    image: Optional[str] = None
+    item_id: str
 
+class Item(BaseModel):
+    item_id: str
+    item_name: str
+    class Config():
+        orm_mode = True
+
+class ImageDisplay(BaseModel):
+    id: str
+    item_id: str
+    image: Optional[str] = None
+    item: Item
+    class Config():
+        orm_mode = True
+
+class MoreImage(BaseModel):
+    image: str
+    class Config():
+        orm_mode = True
+    
 class ItemBase(BaseModel):
     name: str
     appversion: str
@@ -30,7 +51,7 @@ class ItemBase(BaseModel):
     version: str
     reviews: str
     mainimage: Optional[str] = None
-    moreimage: Optional[str] = None
+    moreimage: List[MoreImage] = []
     class Config():
         orm_mode = True
 
@@ -53,9 +74,9 @@ class ItemResponse(BaseModel):
     version: str
     reviews: str
     mainimage: Optional[str] = None
-    moreimage: Optional[str] = None
     class Config():
         orm_mode = True
+
 
 class ItemUpdate(BaseModel):
     reviews: Optional[str]
@@ -74,6 +95,5 @@ class ItemUpdate(BaseModel):
     status: Optional[str]
     version: Optional[str]
     mainimage: Optional[str]
-    moreimage: Optional[str]
     class Config():
         orm_mode = True
