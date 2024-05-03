@@ -11,7 +11,6 @@ app = FastAPI()
 app.include_router(item_router.router)
 app.include_router(item_image_router.router)
 
-
 # Create database tables
 models.Base.metadata.create_all(engine)
 
