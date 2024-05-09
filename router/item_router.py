@@ -8,7 +8,7 @@ from db.database import get_db
 from model import models
 from fastapi import APIRouter, Body, Depends, HTTPException, status, UploadFile, File
 from schema.item_schema import ItemBase, ItemUpdate, ItemResponse
-from utility.image import save_itemimage, save_more
+from utility.image import save_itemimage
 
 router = APIRouter(prefix="/items", tags=["items"])
 
@@ -91,7 +91,7 @@ async def update_item(
         except ValidationError:
             raise HTTPException(status_code=400, detail="Invalid request body.")
         
-        required_fields = ["name", "city", "oscategory", "state", "status"]
+        required_fields = ["name", "city", "oscategory", "state", "status", "description"]
         for field in required_fields:
             if field in request_dict and not request_dict[field]:
                 raise HTTPException(
@@ -114,7 +114,7 @@ async def update_item(
         )
         item_image = await save_itemimage(main_image, image_name)
         item.mainimage = item_image
-
+    
     db.commit()
     db.refresh(item)
     return item
@@ -141,11 +141,16 @@ async def partial_update_item(
             request_dict = request.dict(exclude_unset=True)
         except ValidationError:
             raise HTTPException(status_code=400, detail="Invalid request body.")
+        
+        required_fields = ["name", "city", "oscategory", "state", "status", "description"]
+        for field in required_fields:
+            if field in request_dict and not request_dict[field]:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Field '{field}' cannot be empty.",
+                )
     else:
         request_dict = {}
-
-    for field, value in request_dict.items():
-        setattr(item, field, value)
 
     if main_image is not None:
         if not (

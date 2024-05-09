@@ -7,7 +7,11 @@ class conds(str, Enum):
     Refurbished = "Refurbished"
     Unused = "Unused"
 
-class Category(str, Enum):
+class category(str, Enum):
+    Electronic = "Electronic"
+    Media = "Media"
+
+class cate(str, Enum):
     Electronic = "Electronic"
     Media = "Media"
 
@@ -42,8 +46,8 @@ class ItemBase(BaseModel):
     condition: conds 
     description: str
     isfree: bool
-    oscategory: str
-    ossubcategory: str
+    oscategory: category
+    ossubcategory: cate
     price: float
     shortinfo: str
     state: str
@@ -65,8 +69,8 @@ class ItemResponse(BaseModel):
     condition: conds 
     description: str
     isfree: bool
-    oscategory: str
-    ossubcategory: str
+    oscategory: category
+    ossubcategory: cate
     price: float
     shortinfo: str
     state: str
