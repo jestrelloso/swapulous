@@ -37,7 +37,7 @@ class User(Base):
     image = Column(String, nullable=True)
     coverPhoto = Column(String, nullable=True)
 
-    class DbItems(Base):
+class DbItems(Base):
     __tablename__ = 'items'
     id = Column(String, primary_key=True, index = True, unique=True, default=lambda: str(uuid.uuid4()))
     name = Column(String, unique=True)

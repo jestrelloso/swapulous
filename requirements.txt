@@ -6,4 +6,4 @@ bcrypt
 sqlalchemy
 pytest
 python-multipart
-
+python-jose
