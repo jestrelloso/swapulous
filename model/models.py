@@ -1,6 +1,7 @@
 
 from sqlite3 import Date
 import uuid
+from uuid import uuid4
 from db.database import Base
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, func
 from sqlalchemy.types import Date
@@ -66,3 +67,15 @@ class ItemsImage(Base):
     image_path = Column(String, nullable=False)
     item_id = Column(String, ForeignKey("items.id", ondelete="CASCADE"))
     item = relationship("DbItems", back_populates='moreimage')
+
+class DbReview(Base):
+    __tablename__= 'reviews'
+    id = Column(String, primary_key=True, default=lambda: str(uuid4()))
+    rating = Column(Integer)
+    item = Column(String)
+    comment =  Column(String)
+    user = Column(String)
+    creator = Column(String)
+    modified_date = Column(String)
+    created_date = Column(String)
+    slug = Column(String)
