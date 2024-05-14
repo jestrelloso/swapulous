@@ -2,8 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+SQLALCHEMY_DATABASE_URL = "sqlite:///./swapulous.db"
 # Database URL, change if necessary
-SQLALCHEMY_DATABASE_URL = "sqlite:///./testing-db.db"
+# SQLALCHEMY_DATABASE_URL = "sqlite:///./testing-db.db"
 
 
 engine = create_engine(
