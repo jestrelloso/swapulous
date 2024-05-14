@@ -4,6 +4,7 @@ uvicorn>=0.15.0,<0.16.0
 sqlalchemy
 passlib
 bcrypt
-uuid
-requests
+sqlalchemy
 pytest
+python-multipart
+python-jose
